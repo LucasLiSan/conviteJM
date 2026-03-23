@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Dia da Água - Ação Educativa</title>
+</head>
+<body>
+    <!-- Animação da Árvore -->
+    <div id="animation-container">
+        <div class="tree-container">
+            <div class="ground"></div>
+            <div class="trunk"></div>
+            <div class="leaves">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container de Anúncios -->
+    <div id="announcements-container">
+        <div class="announcement" id="announcement-1">
+            Ação Educativa - Despertando a Consciência sobre a Importância da Água e da Natureza
+        </div>
+        <div class="announcement" id="announcement-2">
+            É uma ação em parceria com a Secretaria do Meio Ambiente e a Escola
+        </div>
+        <div class="announcement" id="announcement-3">
+            Dia 23 de março
+        </div>
+        <div class="announcement" id="announcement-4">
+            na EMEB PREFEITO PROFESSOR JOSÉ MENDES
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div id="main-content">
+        <header>
+            <h1>Ação Educativa</h1>
+            <p>Despertando a Consciência sobre a Importância da Água e da Natureza</p>
+            <p>Uma ação em parceria com a Secretaria do Meio Ambiente e a Escola</p>
+            <div class="date">📅 Dia 23 de março <br> 🕑 07H AS 08H primeira turma <br> 🕑 08H AS 09H segunda turma  </div>
+            <p class="location">📍 EMEB PREFEITO PROFESSOR JOSÉ MENDES</p>
+        </header>
+
+        <div class="menus-container">
+            <!-- Menu 1 -->
+            <div class="menu-item">
+                <div class="menu-header" onclick="toggleMenu(1)">
+                    <div class="menu-title">
+                        <span class="type palestra">PALESTRA</span>
+                        A Importância da Água e Preservação do Meio Ambiente
+                    </div>
+                    <span class="arrow" id="arrow-1">▼</span>
+                </div>
+                <div class="menu-content" id="content-1">
+                    <div class="description">
+                        Apresentação dialogada sobre o ciclo da água, escassez global e atitudes cotidianas que fazem diferença na preservação dos recursos hídricos e do meio ambiente.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu 2 -->
+            <div class="menu-item">
+                <div class="menu-header" onclick="toggleMenu(2)">
+                    <div class="menu-title">
+                        <span class="type atividade">ATIVIDADE</span>
+                        Oficina do Amigo Ecológico - Plantio de Alpiste
+                    </div>
+                    <span class="arrow" id="arrow-2">▼</span>
+                </div>
+                <div class="menu-content" id="content-2">
+                    <div class="description">
+                        Cada criança cria seu próprio amigo ecológico plantando alpiste em um vasinho. Atividade lúdica que reforça o cuidado com a natureza.
+                    </div>
+                    <div class="sub-description">
+                        <strong>Empresa irá fornecer:</strong> Vasinhos individuais, alpiste, terra adubada e manual de como cuidar do boneco em casa.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu 3 -->
+            <div class="menu-item">
+                <div class="menu-header" onclick="toggleMenu(3)">
+                    <div class="menu-title">
+                        <span class="type palestra">PALESTRA</span>
+                        Reciclagem e Separação de Resíduos
+                    </div>
+                    <span class="arrow" id="arrow-3">▼</span>
+                </div>
+                <div class="menu-content" id="content-3">
+                    <div class="description">
+                        Explicação sobre tipos de resíduos, cores das lixeiras de coleta seletiva e o impacto positivo da reciclagem para o planeta e para a comunidade local.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu 4 -->
+            <div class="menu-item">
+                <div class="menu-header" onclick="toggleMenu(4)">
+                    <div class="menu-title">
+                        <span class="type atividade">ATIVIDADE</span>
+                        Desafio da Separação + Premiação
+                    </div>
+                    <span class="arrow" id="arrow-4">▼</span>
+                </div>
+                <div class="menu-content" id="content-4">
+                    <div class="description">
+                        Crianças recebem resíduos variados e separam corretamente nas lixeiras. As participações mais acertadas são premiadas com brindes.
+                    </div>
+                    <div class="sub-description">
+                        <strong>Empresa irá fornecer:</strong> Lixeiras recicláveis / orgânicos e 50 brindes para premiação.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>URBANA SERVIÇOS</h3>
+            <div class="event-title">Dia da Água & Coleta Seletiva</div>
+            <p>Palestra Educativa para Alunos</p>
+            <p>24 de março de 2026 • Escola Municipal • Registro/SP</p>
+            <p>Palestra Educativa</p>
+        </footer>
+    </div>
+
+    <script>
+        // Sequência de animações
+        let currentAnnouncement = 0;
+        const announcements = [
+            document.getElementById('announcement-1'),
+            document.getElementById('announcement-2'),
+            document.getElementById('announcement-3'),
+            document.getElementById('announcement-4')
+        ];
+
+        // Após a árvore crescer (5 segundos), iniciar anúncios
+        setTimeout(() => {
+            document.getElementById('animation-container').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('animation-container').style.display = 'none';
+                showAnnouncements();
+            }, 1000);
+        }, 5000);
+
+        function showAnnouncements() {
+            const container = document.getElementById('announcements-container');
+            container.classList.add('active');
+
+            showNextAnnouncement();
+        }
+
+        function showNextAnnouncement() {
+            if (currentAnnouncement >= announcements.length) {
+                // Todos os anúncios mostrados, mostrar conteúdo principal
+                setTimeout(() => {
+                    document.getElementById('announcements-container').classList.add('hidden');
+                    setTimeout(() => {
+                        document.getElementById('announcements-container').style.display = 'none';
+                        document.getElementById('main-content').classList.add('visible');
+                    }, 1000);
+                }, 1000);
+                return;
+            }
+
+            const announcement = announcements[currentAnnouncement];
+            
+            // Fade in
+            announcement.classList.add('fade-in');
+            
+            setTimeout(() => {
+                // Fade out
+                announcement.classList.remove('fade-in');
+                announcement.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    announcement.classList.remove('fade-out');
+                    currentAnnouncement++;
+                    showNextAnnouncement();
+                }, 1500);
+            }, 3000);
+        }
+
+        // Função para toggle dos menus
+        function toggleMenu(menuNumber) {
+            const content = document.getElementById('content-' + menuNumber);
+            const arrow = document.getElementById('arrow-' + menuNumber);
+            const header = arrow.parentElement;
+            
+            const isExpanded = content.classList.contains('expanded');
+            
+            // Fechar todos os outros menus
+            for (let i = 1; i <= 4; i++) {
+                if (i !== menuNumber) {
+                    document.getElementById('content-' + i).classList.remove('expanded');
+                    document.getElementById('arrow-' + i).classList.remove('rotated');
+                    document.getElementById('arrow-' + i).parentElement.classList.remove('active');
+                }
+            }
+            
+            // Toggle do menu clicado
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                arrow.classList.remove('rotated');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('expanded');
+                arrow.classList.add('rotated');
+                header.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

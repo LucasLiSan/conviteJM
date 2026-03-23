@@ -1,0 +1,393 @@
+:root {
+    --colorOne: #942F67;
+    --colorTwo: #423934;
+    --colorThree: #F2C36B;
+    --colorBtnIdle: #D08F6B;
+    --colorBtnActive: #86947A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Sora", sans-serif;
+    background: linear-gradient(135deg, var(--colorOne) 0%, var(--colorTwo) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-transform: uppercase;
+}
+
+/* Animação da Árvore */
+#animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, var(--colorBtnActive) 0%, var(--colorThree) 100%);
+    z-index: 10000;
+    transition: opacity 1s ease;
+}
+
+#animation-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tree-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 50%;
+    animation: groundAppear 1s ease forwards;
+}
+
+@keyframes groundAppear {
+    from {
+        transform: translateX(-50%) scaleX(0);
+    }
+    to {
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+
+.trunk {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 0;
+    background: linear-gradient(to bottom, #8B4513, #654321);
+    border-radius: 5px;
+    animation: trunkGrow 2s ease 1s forwards;
+}
+
+@keyframes trunkGrow {
+    to {
+        height: 150px;
+    }
+}
+
+.leaves {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 200px;
+    height: 200px;
+    animation: leavesGrow 2s ease 3s forwards;
+}
+
+@keyframes leavesGrow {
+    to {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.leaf {
+    position: absolute;
+    background: #228B22;
+    border-radius: 50%;
+}
+
+.leaf:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    top: 80px;
+    left: 40px;
+}
+
+.leaf:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    top: 40px;
+    left: 20px;
+}
+
+.leaf:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 40px;
+    right: 20px;
+}
+
+.leaf:nth-child(4) {
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 60px;
+}
+
+/* Anúncios com Fade */
+#announcements-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, var(--colorBtnActive) 0%, var(--colorThree) 100%);
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+#announcements-container.active {
+    display: flex;
+}
+
+#announcements-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.announcement {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    max-width: 80%;
+    opacity: 0;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.announcement.fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.announcement.fade-out {
+    animation: fadeOut 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+/* Conteúdo Principal */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding-bottom: 60px;
+}
+
+#main-content.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--colorBtnActive) 0%, var(--colorBtnActive) 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    opacity: 0.95;
+}
+
+header .date {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 15px 0;
+    background: rgba(255,255,255,0.2);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 25px;
+}
+
+header .location {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* Menus Dropdown */
+.menus-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.menu-item {
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.menu-header {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    transition: background 0.3s ease;
+}
+
+.menu-header:hover {
+    background: linear-gradient(to right, #e9ecef, #f8f9fa);
+}
+
+.menu-header.active {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+
+.menu-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.menu-title .type {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.menu-title .type.palestra {
+    background: #3498DB;
+    color: white;
+}
+
+.menu-title .type.atividade {
+    background: #E74C3C;
+    color: white;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+    transform: rotate(180deg);
+}
+
+.menu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: #f8f9fa;
+}
+
+.menu-content.expanded {
+    max-height: 500px;
+    padding: 25px;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.sub-description {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    padding: 15px;
+    background: white;
+    border-left: 4px solid #3498DB;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+}
+
+footer h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #3498DB;
+}
+
+footer p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    opacity: 0.9;
+}
+
+footer .event-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .announcement {
+        font-size: 1.5rem;
+    }
+
+    .menu-title {
+        font-size: 1.1rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+}
